@@ -1,0 +1,218 @@
+
+
+Clock: 0
+
+---------- Tabela de status de instruções ----------
+Instruct| dest  |   j   |   k   | Issue | Read  | Exec  | Write |
+ld     |  r1   |  12   |  rb   |       |       |       |       |
+
+
+---------- Tabela de unidades funcionais ----------
+Name    | Busy  |  Op   |  Fi   |  Fj   |  Fk   |  Qj   |  Qk   |  Rj   |  Rk   |
+Add     | False |       |       |       |       |       |       | False | False |
+Mult1   | False |       |       |       |       |       |       | False | False |
+Mult2   | False |       |       |       |       |       |       | False | False |
+Divide  | False |       |       |       |       |       |       | False | False |
+Integer | False |       |       |       |       |       |       | False | False |
+
+
+---------- Tabela de status dos registros ----------
+R0     |  R1   |  R2   |  R3   |  R4   |  R5   |  R6   |  R7   |  R8   |  R9   |R10    |R11    |R12    |
+       |       |       |       |       |       |       |       |       |       |       |       |       |
+
+Clock: 1
+
+---------- Tabela de status de instruções ----------
+Instruct| dest  |   j   |   k   | Issue | Read  | Exec  | Write |
+ld     |  r1   |  12   |  rb   |   1   |       |       |       |
+ld     |  r3   |  16   |  rb   |       |       |       |       |
+
+
+---------- Tabela de unidades funcionais ----------
+Name    | Busy  |  Op   |  Fi   |  Fj   |  Fk   |  Qj   |  Qk   |  Rj   |  Rk   |
+Add     | False |       |       |       |       |       |       | False | False |
+Mult1   | False |       |       |       |       |       |       | False | False |
+Mult2   | False |       |       |       |       |       |       | False | False |
+Divide  | False |       |       |       |       |       |       | False | False |
+Integer | True  |  ld   |  r1   |       |  rb   |       |       | True  | True  |
+
+
+---------- Tabela de status dos registros ----------
+R0     |  R1   |  R2   |  R3   |  R4   |  R5   |  R6   |  R7   |  R8   |  R9   |R10    |R11    |R12    |
+       |Integer|       |       |       |       |       |       |       |       |       |       |       |
+
+Clock: 2
+
+---------- Tabela de status de instruções ----------
+Instruct| dest  |   j   |   k   | Issue | Read  | Exec  | Write |
+ld     |  r1   |  12   |  rb   |   1   |   2   |       |       |
+ld     |  r3   |  16   |  rb   |       |       |       |       |
+addd   |  r4   |  r2   |  r1   |       |       |       |       |
+
+
+---------- Tabela de unidades funcionais ----------
+Name    | Busy  |  Op   |  Fi   |  Fj   |  Fk   |  Qj   |  Qk   |  Rj   |  Rk   |
+Add     | False |       |       |       |       |       |       | False | False |
+Mult1   | False |       |       |       |       |       |       | False | False |
+Mult2   | False |       |       |       |       |       |       | False | False |
+Divide  | False |       |       |       |       |       |       | False | False |
+Integer | True  |  ld   |  r1   |       |  rb   |       |       | False | False |
+
+
+---------- Tabela de status dos registros ----------
+R0     |  R1   |  R2   |  R3   |  R4   |  R5   |  R6   |  R7   |  R8   |  R9   |R10    |R11    |R12    |
+       |Integer|       |       |       |       |       |       |       |       |       |       |       |
+
+Clock: 3
+
+---------- Tabela de status de instruções ----------
+Instruct| dest  |   j   |   k   | Issue | Read  | Exec  | Write |
+ld     |  r1   |  12   |  rb   |   1   |   2   |   3   |       |
+ld     |  r3   |  16   |  rb   |       |       |       |       |
+addd   |  r4   |  r2   |  r1   |       |       |       |       |
+
+
+---------- Tabela de unidades funcionais ----------
+Name    | Busy  |  Op   |  Fi   |  Fj   |  Fk   |  Qj   |  Qk   |  Rj   |  Rk   |
+Add     | False |       |       |       |       |       |       | False | False |
+Mult1   | False |       |       |       |       |       |       | False | False |
+Mult2   | False |       |       |       |       |       |       | False | False |
+Divide  | False |       |       |       |       |       |       | False | False |
+Integer | True  |  ld   |  r1   |       |  rb   |       |       | False | False |
+
+
+---------- Tabela de status dos registros ----------
+R0     |  R1   |  R2   |  R3   |  R4   |  R5   |  R6   |  R7   |  R8   |  R9   |R10    |R11    |R12    |
+       |Integer|       |       |       |       |       |       |       |       |       |       |       |
+
+Clock: 4
+
+---------- Tabela de status de instruções ----------
+Instruct| dest  |   j   |   k   | Issue | Read  | Exec  | Write |
+ld     |  r1   |  12   |  rb   |   1   |   2   |   3   |   4   |
+ld     |  r3   |  16   |  rb   |       |       |       |       |
+addd   |  r4   |  r2   |  r1   |       |       |       |       |
+
+
+---------- Tabela de unidades funcionais ----------
+Name    | Busy  |  Op   |  Fi   |  Fj   |  Fk   |  Qj   |  Qk   |  Rj   |  Rk   |
+Add     | False |       |       |       |       |       |       | False | False |
+Mult1   | False |       |       |       |       |       |       | False | False |
+Mult2   | False |       |       |       |       |       |       | False | False |
+Divide  | False |       |       |       |       |       |       | False | False |
+Integer | False |       |       |       |       |       |       | False | False |
+
+
+---------- Tabela de status dos registros ----------
+R0     |  R1   |  R2   |  R3   |  R4   |  R5   |  R6   |  R7   |  R8   |  R9   |R10    |R11    |R12    |
+       |       |       |       |       |       |       |       |       |       |       |       |       |
+
+Clock: 5
+
+---------- Tabela de status de instruções ----------
+Instruct| dest  |   j   |   k   | Issue | Read  | Exec  | Write |
+ld     |  r1   |  12   |  rb   |   1   |   2   |   3   |   4   |
+ld     |  r3   |  16   |  rb   |   5   |       |       |       |
+addd   |  r4   |  r2   |  r1   |       |       |       |       |
+
+
+---------- Tabela de unidades funcionais ----------
+Name    | Busy  |  Op   |  Fi   |  Fj   |  Fk   |  Qj   |  Qk   |  Rj   |  Rk   |
+Add     | False |       |       |       |       |       |       | False | False |
+Mult1   | False |       |       |       |       |       |       | False | False |
+Mult2   | False |       |       |       |       |       |       | False | False |
+Divide  | False |       |       |       |       |       |       | False | False |
+Integer | True  |  ld   |  r3   |       |  rb   |       |       | True  | True  |
+
+
+---------- Tabela de status dos registros ----------
+R0     |  R1   |  R2   |  R3   |  R4   |  R5   |  R6   |  R7   |  R8   |  R9   |R10    |R11    |R12    |
+       |       |       |Integer|       |       |       |       |       |       |       |       |       |
+
+Clock: 6
+
+---------- Tabela de status de instruções ----------
+Instruct| dest  |   j   |   k   | Issue | Read  | Exec  | Write |
+ld     |  r1   |  12   |  rb   |   1   |   2   |   3   |   4   |
+ld     |  r3   |  16   |  rb   |   5   |   6   |       |       |
+addd   |  r4   |  r2   |  r1   |   6   |       |       |       |
+
+
+---------- Tabela de unidades funcionais ----------
+Name    | Busy  |  Op   |  Fi   |  Fj   |  Fk   |  Qj   |  Qk   |  Rj   |  Rk   |
+Add     | True  | addd  |  r4   |  r2   |  r1   |       |       | True  | True  |
+Mult1   | False |       |       |       |       |       |       | False | False |
+Mult2   | False |       |       |       |       |       |       | False | False |
+Divide  | False |       |       |       |       |       |       | False | False |
+Integer | True  |  ld   |  r3   |       |  rb   |       |       | False | False |
+
+
+---------- Tabela de status dos registros ----------
+R0     |  R1   |  R2   |  R3   |  R4   |  R5   |  R6   |  R7   |  R8   |  R9   |R10    |R11    |R12    |
+       |       |       |Integer|Add    |       |       |       |       |       |       |       |       |
+
+Clock: 7
+
+---------- Tabela de status de instruções ----------
+Instruct| dest  |   j   |   k   | Issue | Read  | Exec  | Write |
+ld     |  r1   |  12   |  rb   |   1   |   2   |   3   |   4   |
+ld     |  r3   |  16   |  rb   |   5   |   6   |   7   |       |
+addd   |  r4   |  r2   |  r1   |   6   |   7   |       |       |
+
+
+---------- Tabela de unidades funcionais ----------
+Name    | Busy  |  Op   |  Fi   |  Fj   |  Fk   |  Qj   |  Qk   |  Rj   |  Rk   |
+Add     | True  | addd  |  r4   |  r2   |  r1   |       |       | False | False |
+Mult1   | False |       |       |       |       |       |       | False | False |
+Mult2   | False |       |       |       |       |       |       | False | False |
+Divide  | False |       |       |       |       |       |       | False | False |
+Integer | True  |  ld   |  r3   |       |  rb   |       |       | False | False |
+
+
+---------- Tabela de status dos registros ----------
+R0     |  R1   |  R2   |  R3   |  R4   |  R5   |  R6   |  R7   |  R8   |  R9   |R10    |R11    |R12    |
+       |       |       |Integer|Add    |       |       |       |       |       |       |       |       |
+
+Clock: 8
+
+---------- Tabela de status de instruções ----------
+Instruct| dest  |   j   |   k   | Issue | Read  | Exec  | Write |
+ld     |  r1   |  12   |  rb   |   1   |   2   |   3   |   4   |
+ld     |  r3   |  16   |  rb   |   5   |   6   |   7   |   8   |
+addd   |  r4   |  r2   |  r1   |   6   |   7   |       |       |
+
+
+---------- Tabela de unidades funcionais ----------
+Name    | Busy  |  Op   |  Fi   |  Fj   |  Fk   |  Qj   |  Qk   |  Rj   |  Rk   |
+Add     | True  | addd  |  r4   |  r2   |  r1   |       |       | False | False |
+Mult1   | False |       |       |       |       |       |       | False | False |
+Mult2   | False |       |       |       |       |       |       | False | False |
+Divide  | False |       |       |       |       |       |       | False | False |
+Integer | False |       |       |       |       |       |       | False | False |
+
+
+---------- Tabela de status dos registros ----------
+R0     |  R1   |  R2   |  R3   |  R4   |  R5   |  R6   |  R7   |  R8   |  R9   |R10    |R11    |R12    |
+       |       |       |       |Add    |       |       |       |       |       |       |       |       |
+
+Clock: 9
+
+---------- Tabela de status de instruções ----------
+Instruct| dest  |   j   |   k   | Issue | Read  | Exec  | Write |
+ld     |  r1   |  12   |  rb   |   1   |   2   |   3   |   4   |
+ld     |  r3   |  16   |  rb   |   5   |   6   |   7   |   8   |
+addd   |  r4   |  r2   |  r1   |   6   |   7   |   9   |       |
+
+
+---------- Tabela de unidades funcionais ----------
+Name    | Busy  |  Op   |  Fi   |  Fj   |  Fk   |  Qj   |  Qk   |  Rj   |  Rk   |
+Add     | True  | addd  |  r4   |  r2   |  r1   |       |       | False | False |
+Mult1   | False |       |       |       |       |       |       | False | False |
+Mult2   | False |       |       |       |       |       |       | False | False |
+Divide  | False |       |       |       |       |       |       | False | False |
+Integer | False |       |       |       |       |       |       | False | False |
+
+
+---------- Tabela de status dos registros ----------
+R0     |  R1   |  R2   |  R3   |  R4   |  R5   |  R6   |  R7   |  R8   |  R9   |R10    |R11    |R12    |
+       |       |       |       |Add    |       |       |       |       |       |       |       |       |

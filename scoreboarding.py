@@ -1,5 +1,4 @@
-from typing import List, TypedDict, Mapping, Union
-
+from typing import List
 
 class InstructionStatus:
     id: int
@@ -49,27 +48,11 @@ class InstructionStatus:
 
 
 class Scoreboarding:
-    ## functional_units: dict[str, Mapping[str, Union[str, bool]]]
-   # functional_units: dict[str, FunctionalUnit]
     instructions_status: List[InstructionStatus]
     register_status: dict[str, str]
 
     def __init__(self):
-        ## "instruction": "", "dest": "", "j": "", "k": "", "issue": "", "read": "", "execution": "", "write": ""
         self.instructions_status = []
-        # self.functional_units = {
-        #     'Integer': {'busy': False, 'op': "", 'Fi': "", 'Fj': "", 'Fk': "", 'Qj': "", 'Qk': "",
-        #                 'Rj': False, 'Rk': False},
-        #     # 'Mult1': (False, None, None, None, None, None, None, None),
-        #     'Mult1': {'busy': False, 'op': "", 'Fi': "", 'Fj': "", 'Fk': "", 'Qj': "", 'Qk': "",
-        #                 'Rj': False, 'Rk': False},
-        #     'Mult2': {'busy': False, 'op': "", 'Fi': "", 'Fj': "", 'Fk': "", 'Qj': "", 'Qk': "",
-        #                 'Rj': False, 'Rk': False},
-        #     'Add': {'busy': False, 'op': "", 'Fi': "", 'Fj': "", 'Fk': "", 'Qj': "", 'Qk': "",
-        #                 'Rj': False, 'Rk': False},
-        #     'Divide': {'busy': False, 'op': "", 'Fi': "", 'Fj': "", 'Fk': "", 'Qj': "", 'Qk': "",
-        #                 'Rj': False, 'Rk': False},
-        # }
 
         self.register_status = {
             'r0': "",
@@ -88,11 +71,11 @@ class Scoreboarding:
             'rb': "",
         }
 
-    # def set_function_unit(self, fuctional_unit, status):
-    #     self.functional_units[fuctional_unit] = status
-    #
-    # def clear_function_unit(self, fuctional_unit):
-    #     self.functional_units[fuctional_unit] = {'busy': False, 'op': "", 'Fi': "", 'Fj': "", 'Fk': "", 'Qj': "", 'Qk': "", 'Rj': "", 'Rk': ""}
+    def is_all_instructions_writen(self):
+        for inst in self.instructions_status:
+            if inst.write == "":
+                return False
+        return True
 
     def set_register_status(self, register, functional_unit):
         self.register_status[register] = functional_unit
@@ -104,17 +87,41 @@ class Scoreboarding:
         new_instruction = InstructionStatus(id, instruction, dest, j, k, issue, read, execution, write)
         self.instructions_status.append(new_instruction)
 
-    def show_registers_status_table(self):
-        layout = "{:7} | {:^7} | {:^7} | {:^7} | {:^7} | {:^7} | {:^7} | {:^7} | {:^7} | {:^7} | {:7} | {:7}"
-        print("\n\n---------- Tabela de status dos registros ----------")
-        print(layout.format("R0", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10", "R11", "R12"))
-        # string_buffer = []
-        # for reg, value in self.register_status:
-        #     string_buffer.append("{:7} |".format(value))
-        # table = "".join(string_buffer)
+    def update_issue(self, id: int, clock: int):
+        inst = self.get_instruction_by_id(id)
+        inst.issue = clock
 
-        # continuar nessa
-        # for reg, value in self.register_status.items():
-        #
-        # table = layout.format()
-        # print(table)
+    def update_read(self, id: int, clock: int):
+        inst = self.get_instruction_by_id(id)
+        inst.read = clock
+
+    def update_execution(self, id: int, clock: int):
+        inst = self.get_instruction_by_id(id)
+        inst.execution = clock
+
+    def update_write(self, id: int, clock: int):
+        inst = self.get_instruction_by_id(id)
+        inst.write = clock
+
+    def get_instruction_by_id(self, id: int):
+        for inst in self.instructions_status:
+            if inst.id == id:
+                return inst
+
+    def show_instructions_status(self, file):
+        layout = "{:7}|{:^7}|{:^7}|{:^7}|{:^7}|{:^7}|{:^7}|{:^7}|\n"
+        file.write("\n\n---------- Tabela de status de instruções ----------\n")
+        file.write(layout.format("Instruct", "dest", "j", "k", "Issue", "Read", "Exec", "Write"))
+        for inst in self.instructions_status:
+            file.write(layout.format(inst.instruction, inst.destination, inst.j, inst.k, inst.issue, inst.read, inst.execution, inst.write))
+
+    def show_registers_status_table(self, file):
+        layout = "{:7}|{:^7}|{:^7}|{:^7}|{:^7}|{:^7}|{:^7}|{:^7}|{:^7}|{:^7}|{:7}|{:7}|{:7}|\n"
+        file.write("\n\n---------- Tabela de status dos registros ----------\n")
+        file.write(layout.format("R0", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10", "R11", "R12"))
+        string_buffer = []
+        for reg, value in self.register_status.items():
+            if not reg == "rb":
+                string_buffer.append("{:7}|".format(value))
+        table = "".join(string_buffer)
+        file.write(table)
